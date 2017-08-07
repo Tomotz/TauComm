@@ -183,6 +183,7 @@ app.post('/api/auth', function (req, res) {
 appHttp.post('/api/saveSrtFileForUser', jwt({secret: getJWTSecret()}), function (req, res) {
 //appHttp.post('/api/saveSrtFileForUser', function (req, res) {
 
+	console.log(__dirname);
 	console.log("userId: " + req.user.userId);
 	var userId = req.user.userId;
 
@@ -584,7 +585,7 @@ cmd.get(
 	});
 
 cmd.get(
-	'mkdir ' + fileSystemDir + ' && cd ' + fileSystemDir + ' && git init', // Change to 'pwd' in linux
+	'mkdir ' + __dirname + fileSystemDir + ' && cd ' + __dirname + fileSystemDir + ' && git init', // Change to 'pwd' in linux
 	function (data) {
 		console.log('created git repository : ', data)
 		baseDir = data;
@@ -592,6 +593,7 @@ cmd.get(
 
 process.on('uncaughtException', function (err) {
 	console.log(err);
+	console.log(__dirname);
 });
 
 // Private functions
